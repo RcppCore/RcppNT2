@@ -1,8 +1,8 @@
 // Print the SIMD capabilities of your processor.
 
-// [[Rcpp::depends(RcppNt2)]]
-#include <RcppNt2.h>
-using namespace RcppNt2;
+// [[Rcpp::depends(RcppNT2)]]
+#include <RcppNT2.h>
+using namespace RcppNT2;
 
 #include <Rcpp.h>
 using namespace Rcpp;

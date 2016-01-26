@@ -39,6 +39,6 @@
 #include <nt2/swar/swar.hpp>
 #include <nt2/trigonometric/trigonometric.hpp>
 
-#include <RcppNt2/algorithm.h>
+#include <RcppNT2/algorithm.h>
 
 #endif /* RCPP_NT2_H */

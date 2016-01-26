@@ -3,9 +3,9 @@
 //
 // See: http://nt2.metascale.fr/doc/html/tutorials/processing_data_the_simd_way.html
 
-// [[Rcpp::depends(RcppNt2)]]
-#include <RcppNt2.h>
-using namespace RcppNt2;
+// [[Rcpp::depends(RcppNT2)]]
+#include <RcppNT2.h>
+using namespace RcppNT2;
 
 #include <Rcpp.h>
 using namespace Rcpp;

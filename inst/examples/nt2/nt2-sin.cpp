@@ -1,9 +1,8 @@
-// Example using 'nt2::sin'.
+// Example using 'nt2::sin()'.
 
-// [[Rcpp::depends(RcppParallel)]]
-#define RCPP_PARALLEL_USE_SIMD
-#include <RcppParallel.h>
-using namespace RcppParallel;
+// [[Rcpp::depends(RcppNT2)]]
+#include <RcppNT2.h>
+using namespace RcppNT2;
 
 #include <Rcpp.h>
 using namespace Rcpp;
