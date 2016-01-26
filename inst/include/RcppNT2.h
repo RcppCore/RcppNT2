@@ -40,5 +40,6 @@
 #include <nt2/trigonometric/trigonometric.hpp>
 
 #include <RcppNT2/algorithm.h>
+#include <RcppNT2/functor.h>
 
 #endif /* RCPP_NT2_H */

@@ -1,6 +1,8 @@
 #ifndef RCPP_NT2_ALGORITHM_H
 #define RCPP_NT2_ALGORITHM_H
 
+#include <boost/simd/sdk/simd/algorithm.hpp>
+
 namespace RcppNT2 {
 
 template <typename T, typename U, typename UnOp>

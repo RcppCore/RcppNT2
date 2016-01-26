@@ -35,7 +35,7 @@ private:
 // [[Rcpp::export]]
 double simdVar(NumericVector x)
 {
-   double total = simdReduce(x.begin(), x.end(), 0.0, simd_ops::plus());
+   double total = simdReduce(x.begin(), x.end(), 0.0, functor::plus());
    double n = x.size();
    double mean = total / n;
 
