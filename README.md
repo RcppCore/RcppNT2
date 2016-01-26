@@ -9,5 +9,5 @@ and optimization of high-performance computing applications by providing a
 Matlab like syntax that eases the transition between prototype and actual
 application.
 
-`RcppNT2` bundles the `NT<sup>2</sup>` library, and provides a number of helper
+`RcppNT2` bundles the NT<sup>2</sup> library, and provides a number of helper
 wrappers, to make it easy to use in your own R packages.
