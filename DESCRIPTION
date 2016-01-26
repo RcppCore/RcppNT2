@@ -1,0 +1,16 @@
+Package: RcppNT2
+Title: 'Rcpp' Integration for the 'NT2' Scientific Computing Library
+Version: 0.1.0
+Authors@R: c(
+    person("Kevin", "Ushey", email = "kevin@rstudio.com", role = c("aut", "cre")),
+    person("Joel", "Falcou", role = "aut", comment = "Author of NT2"))
+Description: The 'Numerical Template Toolbox (NT2)' is an open source C++
+    library aimed at simplifying the development, debugging and optimization of
+    high-performance computing applications.
+URL: https://github.com/RcppCore/RcppNT2
+BugReports: https://github.com/RcppCore/RcppNT2/issues
+Depends:
+    R (>= 3.1.0)
+License: BSL-1.0
+SystemRequirements: C++11
+RoxygenNote: 5.0.1
