@@ -34,6 +34,54 @@ F simdFor(F&& f, const T& t, const Ts&... ts)
   return simdFor(std::forward<F>(f), t.begin(), t.end(), begin(ts)...);
 }
 
+template <typename MapReducer, typename U, typename T, typename... Ts>
+U simdMapReduce(MapReducer&& reducer, U init, const T* it, const T* end, const Ts*... ts)
+{
+  auto&& f = std::forward<MapReducer>(reducer);
+
+  typedef boost::simd::pack<T> vT; // SIMD vector of T
+  typedef boost::simd::pack<U> vU; // SIMD vector of U
+
+  static const std::size_t N = vT::static_size;
+  const T* aligned_begin = std::min(boost::simd::align_on(it, N * sizeof(T)), end);
+  const T* aligned_end   = aligned_begin + (end - aligned_begin) / N * N;
+
+  // Buffer for the SIMD mapping operations
+  vU buffer = boost::simd::splat<vU>(init);
+
+  // Scalar operations for the initial unaligned region
+  for (; it != aligned_begin; increment<1>(it, ts...))
+    init = f.combine(f.map(*it, *ts...), init);
+
+  // Aligned, SIMD operations
+  for (; it != aligned_end; increment<N>(it, ts...))
+    buffer = f.combine(
+      f.map(boost::simd::aligned_load<vT>(it), boost::simd::load<vT>(ts)...),
+      buffer
+    );
+
+  // Reduce the buffer, joining it into the scalar vale
+  init = f.combine(f.reduce(buffer), init);
+
+  // Leftover unaligned region
+  for (; it != end; increment<1>(it, ts...))
+    init = f.combine(f.map(*it, *ts...), init);
+
+  return init;
+}
+
+template <typename MapReducer, typename T, typename... Ts>
+auto simdMapReduce(MapReducer&& reducer, const T& t, const Ts&... ts)
+  -> decltype(std::forward<MapReducer>(reducer).init())
+{
+  return simdMapReduce(std::forward<MapReducer>(reducer),
+                       std::forward<MapReducer>(reducer).init(),
+                       t.begin(),
+                       t.end(),
+                       begin(ts)...);
+}
+
+
 } // namespace variadic
 } // namespace RcppNT2
 
