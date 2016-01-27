@@ -43,6 +43,39 @@ F simdFor(const T* it, const T* end, F&& f)
   return f;
 }
 
+template <typename T1, typename T2, typename F>
+F simdFor(const T1* begin1, const T1* end1, const T2* begin2, F&& f)
+{
+  typedef boost::simd::pack<T1> vT1;
+  typedef boost::simd::pack<T2> vT2;
+
+  static_assert(
+    vT1::static_size == vT2::static_size,
+    "T1 and T2 are not of the same size"
+  );
+
+  // Attempt to align on 'begin1', and use aligned loads
+  // when feasible.
+  static const std::size_t N = vT1::static_size;
+  const T1* aligned_begin = std::min(boost::simd::align_on(begin1, N * sizeof(T1)), end1);
+  const T1* aligned_end   = aligned_begin + (end1 - aligned_begin) / N * N;
+
+  // Initial un-aligned region
+  for (; begin1 != aligned_begin; ++begin1, ++begin2)
+    f(*begin1, *begin2);
+
+  // TODO: Somehow, profiling here suggested that using 'load'
+  // rather than 'aligned_load' was actually faster (!?)
+  for (; begin1 != aligned_end; begin1 += N, begin2 += N)
+    f(boost::simd::load<vT1>(begin1), boost::simd::load<vT2>(begin2));
+
+  // Final un-aligned region.
+  for (; begin1 != end1; ++begin1, ++begin2)
+    f(*begin1, *begin2);
+
+  return f;
+}
+
 template <typename T, typename U, typename F>
 U simdReduce(const T* begin, const T* end, U init, F&& f)
 {
