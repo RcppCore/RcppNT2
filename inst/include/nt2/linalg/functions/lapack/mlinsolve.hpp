@@ -36,7 +36,7 @@ namespace nt2 { namespace ext
                               ((ast_<A2, nt2::container::domain>)) // X
                             )
   {
-    typedef void  result_type;;
+    typedef void result_type;
     typedef typename A0::value_type ctype_t;
     typedef typename nt2::meta::as_real<ctype_t>::type   type_t;
     typedef typename meta::option<typename A0::settings_type,nt2::tag::shape_>::type shape;
