@@ -9,36 +9,49 @@ namespace functor {
 
 struct sum {
 template <typename T>
-inline T operator()(const T& data) {
-    return sum(data);
+inline auto operator()(T&& t) -> decltype(sum(std::forward<T>(t)))
+{
+    return sum(std::forward<T>(t));
+}
+};
+
+struct size {
+template <typename T>
+inline auto operator()(T&& t) -> decltype(std::forward<T>(t).size())
+{
+    return std::forward<T>(t).size();
 }
 };
 
 struct plus {
-template <typename T>
-inline T operator()(const T& lhs, const T& rhs) {
-    return lhs + rhs;
+template <typename T, typename U>
+inline auto operator()(T&& t, U&& u) -> decltype(std::forward<T>(t) + std::forward<U>(u))
+{
+    return std::forward<T>(t) + std::forward<U>(u);
 }
 };
 
 struct minus {
-template <typename T>
-inline T operator()(const T& lhs, const T& rhs) {
-    return lhs - rhs;
+template <typename T, typename U>
+inline auto operator()(T&& t, U&& u) -> decltype(std::forward<T>(t) - std::forward<U>(u))
+{
+    return std::forward<T>(t) - std::forward<U>(u);
 }
 };
 
 struct times {
-template <typename T>
-inline T operator()(const T& lhs, const T& rhs) {
-    return lhs * rhs;
+template <typename T, typename U>
+inline auto operator()(T&& t, U&& u) -> decltype(std::forward<T>(t) * std::forward<U>(u))
+{
+    return std::forward<T>(t) * std::forward<U>(u);
 }
 };
 
 struct divide {
-template <typename T>
-inline T operator()(const T& lhs, const T& rhs) {
-    return lhs / rhs;
+template <typename T, typename U>
+inline auto operator()(T&& t, U&& u) -> decltype(std::forward<T>(t) / std::forward<U>(u))
+{
+    return std::forward<T>(t) / std::forward<U>(u);
 }
 };
 

@@ -41,5 +41,6 @@
 
 #include <RcppNT2/algorithm.h>
 #include <RcppNT2/functor.h>
+#include <RcppNT2/variadic.h>
 
 #endif /* RCPP_NT2_H */
