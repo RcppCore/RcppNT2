@@ -1,5 +1,5 @@
-#ifndef RCPP_NT2_ALGORITHM_H
-#define RCPP_NT2_ALGORITHM_H
+#ifndef RCPP_NT2_ALGORITHM_ALGORITHM_H
+#define RCPP_NT2_ALGORITHM_ALGORITHM_H
 
 #include <boost/simd/sdk/simd/algorithm.hpp>
 
@@ -125,4 +125,4 @@ U simdMapReduce(const T* it, const T* end, U init, MapReducer&& mapper)
 
 } // namespace RcppParallel
 
-#endif /* RCPP_NT2_ALGORITHM_H */
+#endif /* RCPP_NT2_ALGORITHM_ALGORITHM_H */

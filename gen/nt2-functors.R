@@ -1,4 +1,4 @@
-path <- "inst/include/RcppNT2/functor.h"
+path <- "inst/include/RcppNT2/functor/functor.h"
 if (!dir.exists(dirname(path)))
   dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
 
@@ -15,8 +15,8 @@ indent <- function(code, indent = "    ") {
 }
 
 template <- paste(c(
-   "#ifndef RCPP_NT2_FUNCTORS_H",
-   "#define RCPP_NT2_FUNCTORS_H",
+   "#ifndef RCPP_NT2_FUNCTOR_FUNCTOR_H",
+   "#define RCPP_NT2_FUNCTOR_FUNCTOR_H",
    "",
    "// Auto-generated functors for functions provided by NT2.",
    "// See 'gen/nt2-functors.R' for more details.",
@@ -29,7 +29,7 @@ template <- paste(c(
    "} // namespace functor",
    "} // namespace RcppNT2",
    "",
-   "#endif /* RCPP_NT2_FUNCTORS_H */"
+   "#endif /* RCPP_NT2_FUNCTOR_FUNCTOR_H */"
 ), collapse = "\n")
 
 code <- NULL

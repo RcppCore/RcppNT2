@@ -39,8 +39,9 @@
 #include <nt2/swar/swar.hpp>
 #include <nt2/trigonometric/trigonometric.hpp>
 
-#include <RcppNT2/algorithm.h>
-#include <RcppNT2/functor.h>
-#include <RcppNT2/variadic.h>
+#include <RcppNT2/core/core.h>
+#include <RcppNT2/algorithm/algorithm.h>
+#include <RcppNT2/functor/functor.h>
+#include <RcppNT2/variadic/variadic.h>
 
 #endif /* RCPP_NT2_H */

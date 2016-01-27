@@ -1,5 +1,5 @@
-#ifndef RCPP_NT2_FUNCTORS_H
-#define RCPP_NT2_FUNCTORS_H
+#ifndef RCPP_NT2_FUNCTOR_FUNCTOR_H
+#define RCPP_NT2_FUNCTOR_FUNCTOR_H
 
 // Auto-generated functors for functions provided by NT2.
 // See 'gen/nt2-functors.R' for more details.
@@ -59,4 +59,4 @@ inline auto operator()(T&& t, U&& u) -> decltype(std::forward<T>(t) / std::forwa
 } // namespace functor
 } // namespace RcppNT2
 
-#endif /* RCPP_NT2_FUNCTORS_H */
+#endif /* RCPP_NT2_FUNCTOR_FUNCTOR_H */
