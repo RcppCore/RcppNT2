@@ -7,6 +7,6 @@ inlineCxxPlugin <- function() {
         "-include", system.file("include/RcppNT2.h", package = "RcppNT2")
       )
     ),
-    includes = "#include <RcppNt2.h>"
+    includes = "#include <RcppNT2.h>"
   )
 }

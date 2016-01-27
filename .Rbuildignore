@@ -1,5 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^gen/
-^nt2/
-^patch/
+^gen$
+^nt2$
+^patch$
