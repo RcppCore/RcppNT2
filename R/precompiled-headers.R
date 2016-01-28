@@ -25,6 +25,7 @@ precompileRcppNT2 <- function() {
     CXX,
     "-x c++-header", header,
     paste("-I", include, sep = ""),
+    paste("-I", R.home("include"), sep = ""),
     "-std=c++11",
     cxxFlags
   )

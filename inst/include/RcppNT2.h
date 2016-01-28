@@ -40,6 +40,7 @@
 #include <nt2/trigonometric/trigonometric.hpp>
 
 #include <RcppNT2/core/core.h>
+#include <RcppNT2/convert/convert.h>
 #include <RcppNT2/algorithm/algorithm.h>
 #include <RcppNT2/functor/functor.h>
 #include <RcppNT2/variadic/variadic.h>
