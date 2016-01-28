@@ -8,7 +8,6 @@ using namespace RcppNT2;
 #include <Rcpp.h>
 using namespace Rcpp;
 
-// Product of squared deviations
 class Accumulator
 {
 public:
@@ -18,7 +17,7 @@ public:
    template <typename T>
    void operator()(const T& data)
    {
-      result_ *= boost::simd::prod(data);
+      result_ *= nt2::prod(data);
    }
 
    operator double() const {

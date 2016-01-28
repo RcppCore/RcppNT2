@@ -20,13 +20,13 @@ public:
    template <typename T>
    void map(const T& self, T* pBuffer)
    {
-      *pBuffer += boost::simd::sqr(self - mean_);
+      *pBuffer += nt2::sqr(self - mean_);
    }
 
    template <typename T, typename U>
    void reduce(const T& data, U* pBuffer)
    {
-      *pBuffer += boost::simd::sum(data);
+      *pBuffer += nt2::sum(data);
    }
 
 private:
@@ -69,8 +69,8 @@ public:
    }
 
    operator double() const {
-      double lhs = lhs_ + boost::simd::sum(pLhs_);
-      double rhs = rhs_ + boost::simd::sum(pRhs_);
+      double lhs = lhs_ + nt2::sum(pLhs_);
+      double rhs = rhs_ + nt2::sum(pRhs_);
       return lhs - (rhs * rhs) / n_;
    }
 

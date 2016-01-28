@@ -19,13 +19,13 @@ public:
    template <typename T>
    void map(const T& self, T* pBuffer)
    {
-      *pBuffer += boost::simd::sqr(self - mean_);
+      *pBuffer += nt2::sqr(self - mean_);
    }
 
    template <typename T, typename U>
    void reduce(const T& data, U* pBuffer)
    {
-      *pBuffer += boost::simd::sum(data);
+      *pBuffer += nt2::sum(data);
    }
 
 private:
