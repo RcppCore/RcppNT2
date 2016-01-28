@@ -48,11 +48,6 @@ public:
 
   Sum() : result_(0.0) {}
 
-  void operator()(double data, double mask)
-  {
-    result_ += mask == 0.0 ? 0.0 : data;
-  }
-
   template <typename T>
   void operator()(const T& data, const T& mask)
   {
