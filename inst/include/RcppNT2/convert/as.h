@@ -2,5 +2,4 @@
 #define RCPP_NT2_CONVERT_AS_H
 
 
-
 #endif /* RCPP_NT2_CONVERT_AS_H */

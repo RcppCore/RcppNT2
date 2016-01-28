@@ -1,6 +1,8 @@
 #ifndef RCPP_NT2_CORE_CORE_H
 #define RCPP_NT2_CORE_CORE_H
 
+#include <RcppNT2/core/create.h>
+
 namespace RcppNT2 {
 
 template <typename T>
