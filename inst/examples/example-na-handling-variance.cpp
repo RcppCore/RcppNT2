@@ -69,13 +69,13 @@ double simdVariance(NumericVector x)
   std::size_t N = x.size() - n;
 
   // Compute the sum of our 'x' vector, discarding NAs.
-  double total = simdFor(&x[0], &x[0] + x.size(), &naMask[0], Sum());
+  double total = simdFor(pbegin(x), pend(x), pbegin(naMask), Sum());
 
   // Compute our mean.
   double mean = total / N;
 
   // Now, compute squared deviations from that mean.
-  double ssq = simdFor(&x[0], &x[0] + x.size(), &naMask[0], SumOfSquares(mean));
+  double ssq = simdFor(pbegin(x), pend(x), pbegin(naMask), SumOfSquares(mean));
 
   // Divide by (n - 1), and we're done!
   return ssq / (N - 1);
