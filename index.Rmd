@@ -1,0 +1,94 @@
+---
+output: html_document
+---
+
+<h1 class="title">RcppNT2</h1>
+
+RcppNT2 provides bindings to the
+[**Numerical Template Toolbox**](https://github.com/jfalcou/nt2)
+(**NT<sup>2</sup>**).
+
+## Overview
+
+**NT<sup>2</sup>** is an open source C++ library aimed at
+simplifying
+the development, debugging and optimization of
+high-performance computing applications by providing a
+Matlab-like syntax that eases the transition between
+prototype and actual application.
+
+**NT<sub>2</sub>** provides with a large toolbox of algorithms,
+facilitating scientific computing for many tasks. Browse the
+[User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html)
+to get an overview of what functions are provided by
+**NT<sub>2</sub>**. By including `<RcppNT2.h>`, these functions
+are all made available as part of the `nt2` namespace, and so are
+immediately ready to use.
+
+## Examples
+
+RcppNT2 provides a number of helper functions, to make high-level
+use of **NT<sup>2</sup>** easy. These come in the form of
+algorithms provided in the `RcppNT2` namespace:
+
+| Algorithm       | Transformation       |
+|-----------------|----------------------|
+| `simdTransform` | `vector` -> `vector` |
+| `simdReduce`    | `vector` -> `scalar` |
+| `simdFor`       | `vector` -> `any`    |
+
+These can be called in a similar manner to their counterparts
+in the standard library.
+
+The `RcppNT2` package comes with a number of stand-alone 
+examples -- please browse them
+[here](https://github.com/RcppCore/RcppNT2/tree/master/inst/examples)
+to get a feel for how the package can be used.
+
+## Getting Started
+
+You can install the RcppNT2 package from GitHub using devtools:
+
+```r
+devtools::install_github("RcppCore/RcppNT2")
+```
+
+### sourceCpp
+
+Add the following to a standalone C++ source file to import RcppNT2:
+
+```cpp
+// [[Rcpp::depends(RcppNT2)]]
+#include <RcppNT2.h>
+```
+
+When you compile a file using `Rcpp::sourceCpp()`, the
+required compiler and linker settings for RcppNT2 will
+be automatically included in the compilation.
+
+Many of the optimizations underlying **NT<sup>2</sup>**
+are made possible through the use of C++ template metaprogramming
+techniques. As a consequence, it can often take a very long time
+to compile translation units that include `<RcppNT2.h>`.
+
+You can use `RcppNT2::precompileRcppNT2()` to generate a
+[pre-compiled header](https://gcc.gnu.org/onlinedocs/gcc/Precompiled-Headers.html),
+which `Rcpp::sourceCpp()` will automatically include and use
+as appropriate. This can improve compile times by up to ~5x
+in translation units including the `<RcppNT2.h>` header.
+
+### R Packages
+
+Because RcppNT2 is a header-only library, using it in client
+R packages is easy. Just ensure you have the following in your
+`DESCRIPTION` file:
+
+```yaml
+LinkingTo: RcppNT2, BH (>= 1.60.0)
+```
+
+After you've added the above to the package you can simply include the main RcppNT2 package header in source files that need to use it:
+
+```cpp
+#include <RcppNT2.h>
+```

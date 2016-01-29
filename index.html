@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+</div>
+
+
+<h1 class="title">
+RcppNT2
+</h1>
+<p>RcppNT2 provides bindings to the <a href="https://github.com/jfalcou/nt2"><strong>Numerical Template Toolbox</strong></a> (<strong>NT<sup>2</sup></strong>).</p>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p><strong>NT<sup>2</sup></strong> is an open source C++ library aimed at simplifying the development, debugging and optimization of high-performance computing applications by providing a Matlab-like syntax that eases the transition between prototype and actual application.</p>
+<p><strong>NT<sub>2</sub></strong> provides with a large toolbox of algorithms, facilitating scientific computing for many tasks. Browse the <a href="http://nt2.metascale.fr/doc/html/user_manual0.html">User Manual</a> to get an overview of what functions are provided by <strong>NT<sub>2</sub></strong>. By including <code>&lt;RcppNT2.h&gt;</code>, these functions are all made available as part of the <code>nt2</code> namespace, and so are immediately ready to use.</p>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<p>RcppNT2 provides a number of helper functions, to make high-level use of <strong>NT<sup>2</sup></strong> easy. These come in the form of algorithms provided in the <code>RcppNT2</code> namespace:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Algorithm</th>
+<th align="left">Transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>simdTransform</code></td>
+<td align="left"><code>vector</code> -&gt; <code>vector</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>simdReduce</code></td>
+<td align="left"><code>vector</code> -&gt; <code>scalar</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>simdFor</code></td>
+<td align="left"><code>vector</code> -&gt; <code>any</code></td>
+</tr>
+</tbody>
+</table>
+<p>These can be called in a similar manner to their counterparts in the standard library.</p>
+<p>The <code>RcppNT2</code> package comes with a number of stand-alone examples – please browse them <a href="https://github.com/RcppCore/RcppNT2/tree/master/inst/examples">here</a> to get a feel for how the package can be used.</p>
+</div>
+<div id="getting-started" class="section level2">
+<h2>Getting Started</h2>
+<p>You can install the RcppNT2 package from GitHub using devtools:</p>
+<pre class="r"><code>devtools::install_github(&quot;RcppCore/RcppNT2&quot;)</code></pre>
+<div id="sourcecpp" class="section level3">
+<h3>sourceCpp</h3>
+<p>Add the following to a standalone C++ source file to import RcppNT2:</p>
+<pre class="cpp"><code>// [[Rcpp::depends(RcppNT2)]]
+#include &lt;RcppNT2.h&gt;</code></pre>
+<p>When you compile a file using <code>Rcpp::sourceCpp()</code>, the required compiler and linker settings for RcppNT2 will be automatically included in the compilation.</p>
+<p>Many of the optimizations underlying <strong>NT<sup>2</sup></strong> are made possible through the use of C++ template metaprogramming techniques. As a consequence, it can often take a very long time to compile translation units that include <code>&lt;RcppNT2.h&gt;</code>.</p>
+<p>You can use <code>RcppNT2::precompileRcppNT2()</code> to generate a <a href="https://gcc.gnu.org/onlinedocs/gcc/Precompiled-Headers.html">pre-compiled header</a>, which <code>Rcpp::sourceCpp()</code> will automatically include and use as appropriate. This can improve compile times by up to ~5x in translation units including the <code>&lt;RcppNT2.h&gt;</code> header.</p>
+</div>
+<div id="r-packages" class="section level3">
+<h3>R Packages</h3>
+<p>Because RcppNT2 is a header-only library, using it in client R packages is easy. Just ensure you have the following in your <code>DESCRIPTION</code> file:</p>
+<pre class="yaml"><code>LinkingTo: RcppNT2, BH (&gt;= 1.60.0)</code></pre>
+<p>After you’ve added the above to the package you can simply include the main RcppNT2 package header in source files that need to use it:</p>
+<pre class="cpp"><code>#include &lt;RcppNT2.h&gt;</code></pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
