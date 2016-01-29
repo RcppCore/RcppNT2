@@ -9,23 +9,12 @@ using namespace RcppNT2;
 #include <Rcpp.h>
 using namespace Rcpp;
 
-namespace detail {
-
-union DoublePunner {
-  uint64_t i;
-  double d;
-};
-
-static const DoublePunner punner = {-1ULL};
-
-} // namespace detail
-
 struct IsNaN
 {
   template <typename T>
   T operator()(const T& data)
   {
-    return nt2::if_else(data == data, detail::punner.d, (double) 0x0);
+    return nt2::if_else(data == data, bitwise::ones(), bitwise::zeroes());
   }
 };
 

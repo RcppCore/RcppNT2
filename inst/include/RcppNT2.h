@@ -41,6 +41,7 @@
 
 #include <RcppNT2/core/core.h>
 #include <RcppNT2/algorithm/algorithm.h>
+#include <RcppNT2/bitwise/bitwise.h>
 #include <RcppNT2/convert/convert.h>
 #include <RcppNT2/functor/functor.h>
 #include <RcppNT2/traits/traits.h>
