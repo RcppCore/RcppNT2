@@ -10,40 +10,19 @@ RcppNT2 provides bindings to the
 
 ## Overview
 
-**NT<sup>2</sup>** is an open source C++ library aimed at
-simplifying
-the development, debugging and optimization of
-high-performance computing applications by providing a
-Matlab-like syntax that eases the transition between
+**NT<sup>2</sup>** is an open source C++ library aimed at 
+simplifying the development, debugging and optimization of 
+high-performance computing applications by providing a 
+Matlab-like syntax that eases the transition between 
 prototype and actual application.
 
-**NT<sub>2</sub>** provides with a large toolbox of algorithms,
-facilitating scientific computing for many tasks. Browse the
-[User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html)
-to get an overview of what functions are provided by
-**NT<sub>2</sub>**. By including `<RcppNT2.h>`, these functions
-are all made available as part of the `nt2` namespace, and so are
-immediately ready to use.
-
-## Examples
-
-RcppNT2 provides a number of helper functions, to make high-level
-use of **NT<sup>2</sup>** easy. These come in the form of
-algorithms provided in the `RcppNT2` namespace:
-
-| Algorithm       | Transformation       |
-|-----------------|----------------------|
-| `simdTransform` | `vector` -> `vector` |
-| `simdReduce`    | `vector` -> `scalar` |
-| `simdFor`       | `vector` -> `any`    |
-
-These can be called in a similar manner to their counterparts
-in the standard library.
-
-The `RcppNT2` package comes with a number of stand-alone 
-examples -- please browse them
-[here](https://github.com/RcppCore/RcppNT2/tree/master/inst/examples)
-to get a feel for how the package can be used.
+**NT<sub>2</sub>** provides with a large toolbox of
+algorithms, facilitating scientific computing for many
+tasks. Browse the [User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html) 
+to get an overview of what functions are provided by 
+**NT<sub>2</sub>**. By including `<RcppNT2.h>`, these
+functions are all made available as part of the `nt2`
+namespace, and so are immediately ready to use.
 
 ## Getting Started
 

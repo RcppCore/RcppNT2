@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="libs/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">RcppNT2</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="quick-reference.html">Quick Reference</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/RcppCore/RcppNT2">GitHub</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<script>
+
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  $('a[href="' + href + '"]').parent().addClass('active');
+});
+
+</script>
+
+<div class="fluid-row" id="header">
+
+
+
+</div>
+
+
+<div id="basics" class="section level2">
+<h2>Basics</h2>
+<p>RcppNT2 provides a number of helper functions, to make high-level use of <strong>NT<sup>2</sup></strong> easy. These come in the form of algorithms provided in the <code>RcppNT2</code> namespace:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Algorithm</th>
+<th align="left">Transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>simdTransform</code></td>
+<td align="left"><code>vector</code> -&gt; <code>vector</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>simdReduce</code></td>
+<td align="left"><code>vector</code> -&gt; <code>scalar</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>simdFor</code></td>
+<td align="left"><code>vector</code> -&gt; <code>any</code></td>
+</tr>
+</tbody>
+</table>
+<p>These can be called in a similar manner to their counterparts in the standard library. Let’s investigate how these can be used.</p>
+<div id="a-simple-example" class="section level3">
+<h3>A Simple Example</h3>
+<p>Let’s look at how we could compute the sum of a vector of numbers the RcppNT2 way. We can express this operation as a reduction; e.g. by successively applying <code>lhs + rhs</code> over the sequence. RcppNT2 provides the <code>simdReduce()</code> function for accomplishing this sort of reduction. Suppose we had a vector of <code>double</code>s, call it <code>data</code>. We could express this computation as:</p>
+<pre class="cpp"><code>double total = simdReduce(pbegin(data),
+                          pend(data),
+                          0.0,
+                          functor::plus());</code></pre>
+<p>The <code>pbegin</code> function is a helper function provided by RcppNT2, and provides pointers (rather than iterators) to the beginning and end of a block of data. <code>functor::plus()</code> is a helper functor that can be used with <code>simdReduce()</code>. It’s implementation is simply:</p>
+<pre class="cpp"><code>struct plus {
+    template &lt;typename T&gt;
+    T operator()(const T&amp; lhs, const T&amp; rhs)
+    {
+        return lhs + rhs;
+    }
+};</code></pre>
+<p>This illustrates some of the basics as to how an algorithm can be implemented in the RcppNT2 way:</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose an appropriate RcppNT2 algorithm (in this case, <code>simdReduce()</code>),</p></li>
+<li><p>Write a class with a templated call operator, with its implementation written using functions provided by <code>nt2</code> whenever possible.</p></li>
+</ol>
+<p>Behind the scenes, the compiler will emit two specializations for the templated call operator: one with <code>T = double</code>, accepting the scalar case, and one with <code>T = boost::simd::pack&lt;double&gt;</code>, to allow for vectorized SIMD operations when possible, with fallbacks for the scalar case when not. Because all <code>nt2</code> functions can operate with both scalars and packed values, the compiler will generate optimal code, and you only need to write a single implementation.</p>
+</div>
+</div>
+<div id="variadic-algorithms" class="section level2">
+<h2>Variadic Algorithms</h2>
+<p>The <code>simd*</code> algorithms provided by RcppNT2 accept up to 2 vectors, depending on the computation. What if you want to handle 3 or more vectors at once?</p>
+<p>RcppNT2 provides a number of variadic versions of these functors as well, within the <code>variadic</code> namespace. Suppose you wanted to write a function that computed the scalar product of three vectors, e.g. <code>sum(x * y * z)</code>. You could express the <code>DotProduct</code> using a stateful functor in <code>RcppNT2</code> as:</p>
+<pre class="cpp"><code>struct DotProduct
+{
+  template &lt;typename T&gt;
+  void operator()(const T&amp; x, const T&amp; y, const T&amp; z)
+  {
+    result_ = nt2::sum(x * y * z);
+  }
+  
+  operator double() const { return result_; }
+  double result_ = 0.0;
+}</code></pre>
+<p>And this could then be called with:</p>
+<pre class="cpp"><code>double result = variadic::simdFor(DotProduct(), x, y, z);</code></pre>
+<p>RcppNT2 will take your functor, apply its call operator across each of the vectors passed in, and then return the result.</p>
+</div>
+<div id="handling-nas" class="section level2">
+<h2>Handling NAs</h2>
+<p>By default, all of the functions provided by <strong>NT<sup>2</sup></strong> will propagate missing values (<code>NA</code> and <code>NaN</code>s). If you need to write an implementation that handles (omits) missing values, there are a couple tools available within RcppNT2 that can help. The general idea is this:</p>
+<ol style="list-style-type: decimal">
+<li><p>Use the <code>na::mask()</code> function to compute an NA bitmask from a vector that contains missing values. The vector will be filled with values that are bitwise 1 when missing, and bitwise 0 when present. Call this vector the ‘NA mask’.</p></li>
+<li><p>Pass the NA mask vector along with any of your SIMD algorithms, and use <code>nt2::bitwise_and()</code> to apply and mask out missing values as appropriate.</p></li>
+</ol>
+<p>See <a href="https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/example-na-handling-variance.cpp">this example</a> for motivation in how missing values can be handled in computation of the variance, without giving up the optimizations borne from SIMD instructions.</p>
+</div>
+<div id="caveats" class="section level2">
+<h2>Caveats</h2>
+<p>There are a number of things to keep in mind when writing your templated functors:</p>
+<ul>
+<li>The <strong>NT<sup>2</sup></strong> functions are stricter about types, especially with literals. If you are working with a function that expects <code>double</code>s, be sure to pass a <code>double</code> (e.g. <code>0.0</code> vs <code>0</code>) as otherwise type deduction can fail.</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+---
+output: html_document
+---
+
+## Basics
+
+RcppNT2 provides a number of helper functions, to make
+high-level use of **NT<sup>2</sup>** easy. These come in the
+form of algorithms provided in the `RcppNT2` namespace:
+
+| Algorithm       | Transformation       |
+|-----------------|----------------------|
+| `simdTransform` | `vector` -> `vector` |
+| `simdReduce`    | `vector` -> `scalar` |
+| `simdFor`       | `vector` -> `any`    |
+
+These can be called in a similar manner to their counterparts
+in the standard library. Let's investigate how these can be
+used.
+
+### A Simple Example
+
+Let's look at how we could compute the sum of a vector of
+numbers the RcppNT2 way. We can express this operation as
+a reduction; e.g. by successively applying `lhs + rhs`
+over the sequence. RcppNT2 provides the `simdReduce()`
+function for accomplishing this sort of reduction.
+Suppose we had a vector of `double`s, call it `data`.
+We could express this computation as:
+
+```cpp
+double total = simdReduce(pbegin(data),
+                          pend(data),
+                          0.0,
+                          functor::plus());
+```
+
+The `pbegin` function is a helper function provided by 
+RcppNT2, and provides pointers (rather than iterators) to 
+the beginning and end of a block of data.  `functor::plus()`
+is a helper functor that can be used with `simdReduce()`.
+It's implementation is simply:
+
+```cpp
+struct plus {
+    template <typename T>
+    T operator()(const T& lhs, const T& rhs)
+    {
+        return lhs + rhs;
+    }
+};
+```
+
+This illustrates some of the basics as to how an algorithm
+can be implemented in the RcppNT2 way:
+
+1. Choose an appropriate RcppNT2 algorithm (in this case,
+   `simdReduce()`),
+
+2. Write a class with a templated call operator, with its
+   implementation written using functions provided by
+   `nt2` whenever possible.
+
+Behind the scenes, the compiler will emit two specializations
+for the templated call operator: one with `T = double`,
+accepting the scalar case, and one with `T = boost::simd::pack<double>`,
+to allow for vectorized SIMD operations when possible, with
+fallbacks for the scalar case when not. Because all `nt2`
+functions can operate with both scalars and packed values,
+the compiler will generate optimal code, and you only need
+to write a single implementation.
+
+## Variadic Algorithms
+
+The `simd*` algorithms provided by RcppNT2 accept up to
+2 vectors, depending on the computation. What if you want
+to handle 3 or more vectors at once?
+
+RcppNT2 provides a number of variadic versions of these 
+functors as well, within the `variadic` namespace. Suppose 
+you wanted to write a function that computed the scalar
+product of three vectors, e.g. `sum(x * y * z)`. You could
+express the `DotProduct` using a stateful functor in `RcppNT2`
+as:
+
+```cpp
+struct DotProduct
+{
+  template <typename T>
+  void operator()(const T& x, const T& y, const T& z)
+  {
+    result_ = nt2::sum(x * y * z);
+  }
+  
+  operator double() const { return result_; }
+  double result_ = 0.0;
+}
+```
+
+And this could then be called with:
+
+```cpp
+double result = variadic::simdFor(DotProduct(), x, y, z);
+```
+
+RcppNT2 will take your functor, apply its call operator
+across each of the vectors passed in, and then return the
+result.
+
+## Handling NAs
+
+By default, all of the functions provided by **NT<sup>2</sup>**
+will propagate missing values (`NA` and `NaN`s). If you need
+to write an implementation that handles (omits) missing
+values, there are a couple tools available within RcppNT2
+that can help. The general idea is this:
+
+1. Use the `na::mask()` function to compute an NA bitmask
+   from a vector that contains missing values. The vector
+   will be filled with values that are bitwise 1 when
+   missing, and bitwise 0 when present. Call this vector the
+   'NA mask'.
+
+2. Pass the NA mask vector along with any of your SIMD
+   algorithms, and use `nt2::bitwise_and()` to apply and
+   mask out missing values as appropriate.
+
+See [this example](https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/example-na-handling-variance.cpp) for motivation in how missing values
+can be handled in computation of the variance, without
+giving up the optimizations borne from SIMD instructions.
+
+## Caveats
+
+There are a number of things to keep in mind when writing
+your templated functors:
+
+- The **NT<sup>2</sup>** functions are stricter about types,
+  especially with literals. If you are working with a
+  function that expects `double`s, be sure to pass a `double`
+  (e.g. `0.0` vs `0`) as otherwise type deduction can fail.
