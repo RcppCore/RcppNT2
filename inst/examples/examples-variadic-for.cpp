@@ -8,18 +8,23 @@ using namespace RcppNT2;
 #include <Rcpp.h>
 using namespace Rcpp;
 
-struct F
+class DotProductAccumulator
 {
+public:
+  // Implement a ternary call operator, that multiples
+  // its three arguments together, and adds them up.
   template <typename T>
   void operator()(const T& a, const T& b, const T& c)
   {
     result_ += nt2::sum(a * b * c);
   }
 
-  operator double() const {
-    return result_;
-  }
+  // Provide a 'double()' conversion operator so that
+  // we can easily return the result from 'simdFor()'
+  // See below for usage.
+  operator double() const { return result_; }
 
+private:
   double result_ = 0.0;
 };
 

@@ -8,11 +8,11 @@ using namespace RcppNT2;
 #include <Rcpp.h>
 using namespace Rcpp;
 
-class Accumulator
+class ProductAccumulator
 {
 public:
 
-   Accumulator() : result_(1.0) {}
+   ProductAccumulator() : result_(1.0) {}
 
    template <typename T>
    void operator()(const T& data)
@@ -30,7 +30,7 @@ private:
 
 // [[Rcpp::export]]
 double simdProd(NumericVector x) {
-   return simdFor(x.begin(), x.end(), Accumulator());
+   return simdFor(x.begin(), x.end(), ProductAccumulator());
 }
 
 /*** R
