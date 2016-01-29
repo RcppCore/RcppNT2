@@ -8,15 +8,29 @@ RcppNT2 provides a number of helper functions, to make
 high-level use of **NT<sup>2</sup>** easy. These come in the
 form of algorithms provided in the `RcppNT2` namespace:
 
-| Algorithm       | Transformation       |
-|-----------------|----------------------|
-| `simdTransform` | `vector` -> `vector` |
-| `simdReduce`    | `vector` -> `scalar` |
-| `simdFor`       | `vector` -> `any`    |
+| Algorithm                           | Transformation       |
+|-------------------------------------|----------------------|
+| `simdTransform(begin, end, out, F)` | `vector` -> `vector` |
+| `simdReduce(begin, end, init, F)`   | `vector` -> `scalar` |
+| `simdFor(begin, end, F)`            | `vector` -> `any`    |
 
 These can be called in a similar manner to their counterparts
 in the standard library. Let's investigate how these can be
 used.
+
+### NT2
+
+**NT<sup>2</sup>** provides a very large host of functions,
+all exported within the `nt2` namespace. These range from
+simple mathematical functions (`nt2::sum()`, `nt2::prod()`),
+to trigonometric functions (`nt2::sin()`, `nt2::cos()`),
+to statistical functions (`nt2::var()`). You can browse
+the full set in the [NT<sup>2</sup> User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html).
+
+However, it is not as simple as calling these functions 
+directly on an arbitrary sequence -- instead, you should 
+think of these as the computational units that you compose 
+together when forming an implementation.
 
 ### A Simple Example
 
@@ -67,20 +81,21 @@ accepting the scalar case, and one with `T = boost::simd::pack<double>`,
 to allow for vectorized SIMD operations when possible, with
 fallbacks for the scalar case when not. Because all `nt2`
 functions can operate with both scalars and packed values,
-the compiler will generate optimal code, and you only need
-to write a single implementation.
+you do not need to write a separate implementation for the
+scalar and non-scalar case -- you merely need to be able
+to express your computation in a uniform way.
 
-## Variadic Algorithms
+## Handling Multiple Vectors
 
 The `simd*` algorithms provided by RcppNT2 accept up to
 2 vectors, depending on the computation. What if you want
 to handle 3 or more vectors at once?
 
-RcppNT2 provides a number of variadic versions of these 
-functors as well, within the `variadic` namespace. Suppose 
+RcppNT2 provides a variadic version of the `simdFor()`
+function as well, within the `variadic` namespace. Suppose 
 you wanted to write a function that computed the scalar
 product of three vectors, e.g. `sum(x * y * z)`. You could
-express the `DotProduct` using a stateful functor in `RcppNT2`
+express the computation using a stateful functor in `RcppNT2`
 as:
 
 ```cpp
@@ -105,7 +120,9 @@ double result = variadic::simdFor(DotProduct(), x, y, z);
 
 RcppNT2 will take your functor, apply its call operator
 across each of the vectors passed in, and then return the
-result.
+result. Because C++11's variadic templates are used behind
+the hood, you can construct algorithms that accept as many
+vector inputs as you need.
 
 ## Handling NAs
 

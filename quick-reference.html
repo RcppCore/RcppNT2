@@ -256,20 +256,25 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>simdTransform</code></td>
+<td align="left"><code>simdTransform(begin, end, out, F)</code></td>
 <td align="left"><code>vector</code> -&gt; <code>vector</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>simdReduce</code></td>
+<td align="left"><code>simdReduce(begin, end, init, F)</code></td>
 <td align="left"><code>vector</code> -&gt; <code>scalar</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>simdFor</code></td>
+<td align="left"><code>simdFor(begin, end, F)</code></td>
 <td align="left"><code>vector</code> -&gt; <code>any</code></td>
 </tr>
 </tbody>
 </table>
 <p>These can be called in a similar manner to their counterparts in the standard library. Let’s investigate how these can be used.</p>
+<div id="nt2" class="section level3">
+<h3>NT2</h3>
+<p><strong>NT<sup>2</sup></strong> provides a very large host of functions, all exported within the <code>nt2</code> namespace. These range from simple mathematical functions (<code>nt2::sum()</code>, <code>nt2::prod()</code>), to trigonometric functions (<code>nt2::sin()</code>, <code>nt2::cos()</code>), to statistical functions (<code>nt2::var()</code>). You can browse the full set in the <a href="http://nt2.metascale.fr/doc/html/user_manual0.html">NT<sup>2</sup> User Manual</a>.</p>
+<p>However, it is not as simple as calling these functions directly on an arbitrary sequence – instead, you should think of these as the computational units that you compose together when forming an implementation.</p>
+</div>
 <div id="a-simple-example" class="section level3">
 <h3>A Simple Example</h3>
 <p>Let’s look at how we could compute the sum of a vector of numbers the RcppNT2 way. We can express this operation as a reduction; e.g. by successively applying <code>lhs + rhs</code> over the sequence. RcppNT2 provides the <code>simdReduce()</code> function for accomplishing this sort of reduction. Suppose we had a vector of <code>double</code>s, call it <code>data</code>. We could express this computation as:</p>
@@ -290,13 +295,13 @@ $(document).ready(function () {
 <li><p>Choose an appropriate RcppNT2 algorithm (in this case, <code>simdReduce()</code>),</p></li>
 <li><p>Write a class with a templated call operator, with its implementation written using functions provided by <code>nt2</code> whenever possible.</p></li>
 </ol>
-<p>Behind the scenes, the compiler will emit two specializations for the templated call operator: one with <code>T = double</code>, accepting the scalar case, and one with <code>T = boost::simd::pack&lt;double&gt;</code>, to allow for vectorized SIMD operations when possible, with fallbacks for the scalar case when not. Because all <code>nt2</code> functions can operate with both scalars and packed values, the compiler will generate optimal code, and you only need to write a single implementation.</p>
+<p>Behind the scenes, the compiler will emit two specializations for the templated call operator: one with <code>T = double</code>, accepting the scalar case, and one with <code>T = boost::simd::pack&lt;double&gt;</code>, to allow for vectorized SIMD operations when possible, with fallbacks for the scalar case when not. Because all <code>nt2</code> functions can operate with both scalars and packed values, you do not need to write a separate implementation for the scalar and non-scalar case – you merely need to be able to express your computation in a uniform way.</p>
 </div>
 </div>
-<div id="variadic-algorithms" class="section level2">
-<h2>Variadic Algorithms</h2>
+<div id="handling-multiple-vectors" class="section level2">
+<h2>Handling Multiple Vectors</h2>
 <p>The <code>simd*</code> algorithms provided by RcppNT2 accept up to 2 vectors, depending on the computation. What if you want to handle 3 or more vectors at once?</p>
-<p>RcppNT2 provides a number of variadic versions of these functors as well, within the <code>variadic</code> namespace. Suppose you wanted to write a function that computed the scalar product of three vectors, e.g. <code>sum(x * y * z)</code>. You could express the <code>DotProduct</code> using a stateful functor in <code>RcppNT2</code> as:</p>
+<p>RcppNT2 provides a variadic version of the <code>simdFor()</code> function as well, within the <code>variadic</code> namespace. Suppose you wanted to write a function that computed the scalar product of three vectors, e.g. <code>sum(x * y * z)</code>. You could express the computation using a stateful functor in <code>RcppNT2</code> as:</p>
 <pre class="cpp"><code>struct DotProduct
 {
   template &lt;typename T&gt;
@@ -310,7 +315,7 @@ $(document).ready(function () {
 }</code></pre>
 <p>And this could then be called with:</p>
 <pre class="cpp"><code>double result = variadic::simdFor(DotProduct(), x, y, z);</code></pre>
-<p>RcppNT2 will take your functor, apply its call operator across each of the vectors passed in, and then return the result.</p>
+<p>RcppNT2 will take your functor, apply its call operator across each of the vectors passed in, and then return the result. Because C++11’s variadic templates are used behind the hood, you can construct algorithms that accept as many vector inputs as you need.</p>
 </div>
 <div id="handling-nas" class="section level2">
 <h2>Handling NAs</h2>
