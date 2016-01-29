@@ -33,9 +33,9 @@ private:
 
 };
 
-// A 'mask-aware' Sum of Squares class. As above, the
-// call operator accepts both a 'data' and a 'mask'.
-// We use 'nt2::bitwise_and' to apply the mask.
+// A 'mask-aware' Sum of Squares class. As above, the call
+// operator accepts both a 'data' and a 'mask'. We use
+// 'nt2::bitwise_and' to apply the mask.
 class SumOfSquares
 {
 public:
