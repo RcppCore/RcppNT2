@@ -261,7 +261,8 @@ RcppNT2
 <div id="r-packages" class="section level3">
 <h3>R Packages</h3>
 <p>Because RcppNT2 is a header-only library, using it in client R packages is easy. Just ensure you have the following in your <code>DESCRIPTION</code> file:</p>
-<pre class="yaml"><code>LinkingTo: RcppNT2, BH (&gt;= 1.60.0)</code></pre>
+<pre class="yaml"><code>LinkingTo: RcppNT2, BH (&gt;= 1.60.0)
+SystemRequirements: C++11</code></pre>
 <p>After you’ve added the above to the package you can simply include the main RcppNT2 package header in source files that need to use it:</p>
 <pre class="cpp"><code>#include &lt;RcppNT2.h&gt;</code></pre>
 </div>

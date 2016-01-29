@@ -255,9 +255,9 @@ all.equal(simd_sum(data), sum(data))</code></pre>
 library(microbenchmark)
 bm &lt;- microbenchmark(sum(data), simd_sum(data))
 printBm(bm)</code></pre>
-<pre><code>##            expr     min      lq     mean   median      uq      max
-##       sum(data) 899.830 907.598 969.2258 936.0525 954.745 1459.749
-##  simd_sum(data) 492.977 504.034 518.2231 512.0570 521.402  636.619</code></pre>
+<pre><code>##            expr     min       lq     mean  median       uq      max
+##       sum(data) 892.909 905.9550 980.7122 929.851 963.2810 1463.563
+##  simd_sum(data) 499.980 505.8235 552.5095 520.479 572.1975  773.165</code></pre>
 <p>We get a noticable gain by taking advantage of SIMD instructions here, although it’s worth noting that we don’t handle <code>NA</code> and <code>NaN</code> with the same granularity as <code>R</code>.</p>
 <div id="simd-algorithms" class="section level2">
 <h2>SIMD Algorithms</h2>
