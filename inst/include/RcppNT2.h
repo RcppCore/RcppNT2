@@ -44,6 +44,7 @@
 #include <RcppNT2/bitwise/bitwise.h>
 #include <RcppNT2/convert/convert.h>
 #include <RcppNT2/functor/functor.h>
+#include <RcppNT2/na/na.h>
 #include <RcppNT2/traits/traits.h>
 #include <RcppNT2/variadic/variadic.h>
 

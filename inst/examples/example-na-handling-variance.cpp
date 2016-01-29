@@ -9,28 +9,11 @@ using namespace RcppNT2;
 #include <Rcpp.h>
 using namespace Rcpp;
 
-struct IsNaN
-{
-  template <typename T>
-  T operator()(const T& data)
-  {
-    return nt2::if_else(data == data, bitwise::ones(), bitwise::zeroes());
-  }
-};
-
-struct NumNonZero
-{
-  template <typename T>
-  void operator()(const T& t)
-  {
-    result_ += nt2::sum(nt2::if_else(t != 0.0, 1.0, 0.0));
-  }
-
-  operator double() const { return result_; }
-
-  double result_ = 0.0;
-};
-
+// A 'mask-aware' Sum class. The call operator accepts both
+// 'data' and a 'mask' of the same time; one can use
+// 'nt2::bitwise_and' to apply the mask. In our case, we'll
+// have the mask set as bitwise '0' for NA', and bitwise '1'
+// otherwise.
 class Sum
 {
 public:
@@ -50,6 +33,9 @@ private:
 
 };
 
+// A 'mask-aware' Sum of Squares class. As above, the
+// call operator accepts both a 'data' and a 'mask'.
+// We use 'nt2::bitwise_and' to apply the mask.
 class SumOfSquares
 {
 public:
@@ -73,16 +59,14 @@ private:
 // [[Rcpp::export]]
 double simdVariance(NumericVector x)
 {
-  // Compute our NA bitmask. It's a vector o 'double's,
-  // as we want to ensure SIMD 'double' x 'double'
-  // instructions can be emitted when interacting with
-  // our bitmask. Note that we use our 'begin' and 'end'
-  // helpers
+  // Use helpers to compute the NA bitmask, as well as
+  // the number of non-NA elements in the vector.
   std::vector<double> naMask(x.size());
-  simdTransform(&x[0], &x[0] + x.size(), &naMask[0], IsNaN());
+  std::size_t n;
+  na::mask(pbegin(x), pend(x), pbegin(naMask), &n);
 
-  // Using our bitmask, compute the number of non-NA elements.
-  double N = simdFor(&naMask[0], &naMask[0] + naMask.size(), NumNonZero());
+  // Compute the number of non-NA elements.
+  std::size_t N = x.size() - n;
 
   // Compute the sum of our 'x' vector, discarding NAs.
   double total = simdFor(&x[0], &x[0] + x.size(), &naMask[0], Sum());

@@ -6,13 +6,13 @@
 namespace RcppNT2 {
 
 template <typename T>
-auto begin(T&& t) -> decltype(&std::forward<T>(t)[0])
+auto pbegin(T&& t) -> decltype(&std::forward<T>(t)[0])
 {
   return &std::forward<T>(t)[0];
 }
 
 template <typename T>
-auto end(T&& t) -> decltype(&std::forward<T>(t)[0])
+auto pend(T&& t) -> decltype(&std::forward<T>(t)[0])
 {
   return &std::forward<T>(t)[0] + std::forward<T>(t).size();
 }
