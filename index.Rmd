@@ -4,7 +4,7 @@ output: html_document
 
 <h1 class="title">RcppNT2</h1>
 
-RcppNT2 provides bindings to the
+RcppNT2 is an R package that provides bindings to the
 [**Numerical Template Toolbox**](https://github.com/jfalcou/nt2)
 (**NT<sup>2</sup>**).
 
@@ -16,13 +16,32 @@ high-performance computing applications by providing a
 Matlab-like syntax that eases the transition between 
 prototype and actual application.
 
-**NT<sub>2</sub>** provides with a large toolbox of
+**NT<sup>2</sup>** provides with a large toolbox of
 algorithms, facilitating scientific computing for many
-tasks. Browse the [User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html) 
-to get an overview of what functions are provided by 
-**NT<sub>2</sub>**. By including `<RcppNT2.h>`, these
+tasks. By including `<RcppNT2.h>`, these
 functions are all made available as part of the `nt2`
-namespace, and so are immediately ready to use.
+namespace, and so are immediately ready to use. A quick
+glance at the types of functions available:
+
+- *Arithmetic*: `nt2::sum()`, `nt2::prod()`, `nt2::abs()`, `nt2::floor()`,
+                `nt2::ceil()`, `nt2::sqrt()`, `nt2::sqr()`, `nt2::exp()`,
+                `nt2::pow()`, `nt2::log()`, ...
+
+- *Bitwise*: Bitwise operators are provided in the `nt2`
+             namespace, prefixed with `bitwise_`. For example,
+             `nt2::bitwise_and()` can be used to perform the logical
+             equivalent of the `&` operator. These functions also work
+             with floating point types.
+
+- *Trigonometric*: All of `sin()`, `cos()` and `tan()` are provided within
+                   the `nt2` namespace, alongside their inverses `asin()`,
+                   `acos()`, and `atan()`. The trigonometric inverses
+                   (`sec()`, `csc()`, `cot()`) are provided as well.
+
+The full collection can be browsed within the
+[**NT<sup>2</sup>** User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html) -- it's
+worth taking a quick look at an overview for each toolset, to get
+an idea of what functions are provided.
 
 ## Getting Started
 

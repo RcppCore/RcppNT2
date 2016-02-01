@@ -21,10 +21,7 @@ used.
 ### NT2
 
 **NT<sup>2</sup>** provides a very large host of functions,
-all exported within the `nt2` namespace. These range from
-simple mathematical functions (`nt2::sum()`, `nt2::prod()`),
-to trigonometric functions (`nt2::sin()`, `nt2::cos()`),
-to statistical functions (`nt2::var()`). You can browse
+all exported within the `nt2` namespace. You can browse
 the full set in the [NT<sup>2</sup> User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html).
 
 However, it is not as simple as calling these functions 

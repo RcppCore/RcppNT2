@@ -247,11 +247,17 @@ $(document).ready(function () {
 <h1 class="title">
 RcppNT2
 </h1>
-<p>RcppNT2 provides bindings to the <a href="https://github.com/jfalcou/nt2"><strong>Numerical Template Toolbox</strong></a> (<strong>NT<sup>2</sup></strong>).</p>
+<p>RcppNT2 is an R package that provides bindings to the <a href="https://github.com/jfalcou/nt2"><strong>Numerical Template Toolbox</strong></a> (<strong>NT<sup>2</sup></strong>).</p>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p><strong>NT<sup>2</sup></strong> is an open source C++ library aimed at simplifying the development, debugging and optimization of high-performance computing applications by providing a Matlab-like syntax that eases the transition between prototype and actual application.</p>
-<p><strong>NT<sub>2</sub></strong> provides with a large toolbox of algorithms, facilitating scientific computing for many tasks. Browse the <a href="http://nt2.metascale.fr/doc/html/user_manual0.html">User Manual</a> to get an overview of what functions are provided by <strong>NT<sub>2</sub></strong>. By including <code>&lt;RcppNT2.h&gt;</code>, these functions are all made available as part of the <code>nt2</code> namespace, and so are immediately ready to use.</p>
+<p><strong>NT<sup>2</sup></strong> provides with a large toolbox of algorithms, facilitating scientific computing for many tasks. By including <code>&lt;RcppNT2.h&gt;</code>, these functions are all made available as part of the <code>nt2</code> namespace, and so are immediately ready to use. A quick glance at the types of functions available:</p>
+<ul>
+<li><p><em>Arithmetic</em>: <code>nt2::sum()</code>, <code>nt2::prod()</code>, <code>nt2::abs()</code>, <code>nt2::floor()</code>, <code>nt2::ceil()</code>, <code>nt2::sqrt()</code>, <code>nt2::sqr()</code>, <code>nt2::exp()</code>, <code>nt2::pow()</code>, <code>nt2::log()</code>, …</p></li>
+<li><p><em>Bitwise</em>: Bitwise operators are provided in the <code>nt2</code> namespace, prefixed with <code>bitwise_</code>. For example, <code>nt2::bitwise_and()</code> can be used to perform the logical equivalent of the <code>&amp;</code> operator. These functions also work with floating point types.</p></li>
+<li><p><em>Trigonometric</em>: All of <code>sin()</code>, <code>cos()</code> and <code>tan()</code> are provided within the <code>nt2</code> namespace, alongside their inverses <code>asin()</code>, <code>acos()</code>, and <code>atan()</code>. The trigonometric inverses (<code>sec()</code>, <code>csc()</code>, <code>cot()</code>) are provided as well.</p></li>
+</ul>
+<p>The full collection can be browsed within the <a href="http://nt2.metascale.fr/doc/html/user_manual0.html"><strong>NT<sup>2</sup></strong> User Manual</a> – it’s worth taking a quick look at an overview for each toolset, to get an idea of what functions are provided.</p>
 </div>
 <div id="getting-started" class="section level2">
 <h2>Getting Started</h2>
