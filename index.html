@@ -259,9 +259,18 @@ RcppNT2
 </ul>
 <p>The full collection can be browsed within the <a href="http://nt2.metascale.fr/doc/html/user_manual0.html"><strong>NT<sup>2</sup></strong> User Manual</a> – it’s worth taking a quick look at an overview for each toolset, to get an idea of what functions are provided.</p>
 </div>
+<div id="articles" class="section level2">
+<h2>Articles</h2>
+<p>The <a href="http://gallery.rcpp.org/">Rcpp Gallery</a> hosts a number of stand-alone articles describing how Rcpp and its various extensions can be used. A number of articles introducing RcppNT2 are provided as well:</p>
+<ul>
+<li><a href="http://gallery.rcpp.org/articles/rcppnt2-introduction">Introduction to RcppNT2</a> — Introduces <strong>NT<sup>2</sup></strong>, RcppNT2, and shows how a vector sum could be computed using SIMD instructions.</li>
+<li><a href="http://gallery.rcpp.org/articles/rcppnt2-sum">Using RcppNT2 to Compute the Sum</a> — Shows how RcppNT2, alongside <code>simdReduce()</code>, could be used to compute the sum of a sequence of numbers.</li>
+<li><a href="http://gallery.rcpp.org/articles/rcppnt2-variance">Using RcppNT2 to Compute the Variance</a> — Shows how RcppNT2, alongside <code>simdFor()</code>, could be used to compute the variance of a sequence of numbers.</li>
+</ul>
+</div>
 <div id="examples" class="section level2">
 <h2>Examples</h2>
-<p>RcppNT2 comes with a number of standalone examples, which we hope will help demonstrate how the package can be used. Try running the examples yourself with <code>Rcpp::sourceCpp()</code>, and then iterate to get a better feel for how RcppNT2 can be used.</p>
+<p>RcppNT2 also comes with a number of standalone examples, which we hope will help demonstrate how the package can be used. Try running the examples yourself with <code>Rcpp::sourceCpp()</code>, and then iterate to get a better feel for how RcppNT2 can be used.</p>
 <ul>
 <li><p><a href="https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-transform.cpp">Using simdTransform()</a> — demonstrates how <code>simdTransform()</code> can be used to compute the vectorized addition of two vectors.</p></li>
 <li><p><a href="https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-for-each.cpp">Using simdFor()</a> — demonstrates how <code>simdFor()</code> can be used, alongside a stateful functor, to compute the product of a set of numbers.</p></li>

@@ -47,9 +47,19 @@ The full collection can be browsed within the
 worth taking a quick look at an overview for each toolset, to get
 an idea of what functions are provided.
 
+## Articles
+
+The [Rcpp Gallery](http://gallery.rcpp.org/) hosts a number of stand-alone articles describing
+how Rcpp and its various extensions can be used. A number of articles
+introducing RcppNT2 are provided as well:
+
+- [Introduction to RcppNT2](http://gallery.rcpp.org/articles/rcppnt2-introduction) --- Introduces **NT<sup>2</sup>**, RcppNT2, and shows how a vector sum could be computed using SIMD instructions.
+- [Using RcppNT2 to Compute the Sum](http://gallery.rcpp.org/articles/rcppnt2-sum) --- Shows how RcppNT2, alongside `simdReduce()`, could be used to compute the sum of a sequence of numbers.
+- [Using RcppNT2 to Compute the Variance](http://gallery.rcpp.org/articles/rcppnt2-variance) --- Shows how RcppNT2, alongside `simdFor()`, could be used to compute the variance of a sequence of numbers.
+
 ## Examples
 
-RcppNT2 comes with a number of standalone examples, which we hope
+RcppNT2 also comes with a number of standalone examples, which we hope
 will help demonstrate how the package can be used. Try running the
 examples yourself with `Rcpp::sourceCpp()`, and then iterate to
 get a better feel for how RcppNT2 can be used.
