@@ -62,7 +62,7 @@ get a better feel for how RcppNT2 can be used.
 - [Handling Missing Values](https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/example-na-handling-variance.cpp) --- demonstrates how missing values can be handled. The variance of a vector of numbers is computed, with missing values omitted.
 
 After you've browsed through a couple examples, take a look at the
-[Quick-Reference Guide](quick-reference.html) to learn more.
+[Quick Reference](quick-reference.html) to learn more.
 
 ## Getting Started
 
