@@ -54,7 +54,9 @@ how Rcpp and its various extensions can be used. A number of articles
 introducing RcppNT2 are provided as well:
 
 - [Introduction to RcppNT2](http://gallery.rcpp.org/articles/rcppnt2-introduction) --- Introduces **NT<sup>2</sup>**, RcppNT2, and shows how a vector sum could be computed using SIMD instructions.
+
 - [Using RcppNT2 to Compute the Sum](http://gallery.rcpp.org/articles/rcppnt2-sum) --- Shows how RcppNT2, alongside `simdReduce()`, could be used to compute the sum of a sequence of numbers.
+
 - [Using RcppNT2 to Compute the Variance](http://gallery.rcpp.org/articles/rcppnt2-variance) --- Shows how RcppNT2, alongside `simdFor()`, could be used to compute the variance of a sequence of numbers.
 
 ## Examples
