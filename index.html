@@ -274,6 +274,7 @@ RcppNT2
 <h2>Getting Started</h2>
 <p>You can install the RcppNT2 package from GitHub using devtools:</p>
 <pre class="r"><code>devtools::install_github(&quot;RcppCore/RcppNT2&quot;)</code></pre>
+<p>If you’re using RStudio, consider downloading the <a href="https://www.rstudio.com/products/rstudio/download/preview/">RStudio Preview</a> first: the <strong>NT<sup>2</sup></strong> library makes extensive use of C++ template metaprogramming; unfortunately, this causes huge slowdowns in the <code>libclang</code> diagnostics engine, which powers the diagnostics behind C++ files open in RStudio. The preview version adds some provisions to ensure this does not happen.</p>
 <div id="sourcecpp" class="section level3">
 <h3>sourceCpp</h3>
 <p>Add the following to a standalone C++ source file to import RcppNT2:</p>
