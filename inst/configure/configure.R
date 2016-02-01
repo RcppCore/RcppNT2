@@ -20,7 +20,12 @@ patch <- pathProg("patch")
 
 # End helpers
 
+# Find the root directory
 owd <- getwd()
+if (!grepl("RcppNT2", owd))
+  stop("this script should be called from within the RcppNT2 sources directory")
+dir <- gsub("RcppNT2.*", "RcppNT2", owd)
+setwd(dir)
 
 # Check out the 'nt2' sources
 if (!dir.exists("nt2"))
