@@ -282,7 +282,7 @@ $(document).ready(function () {
                           pend(data),
                           0.0,
                           functor::plus());</code></pre>
-<p>The <code>pbegin</code> function is a helper function provided by RcppNT2, and provides pointers (rather than iterators) to the beginning and end of a block of data. <code>functor::plus()</code> is a helper functor that can be used with <code>simdReduce()</code>. It’s implementation is simply:</p>
+<p>The <code>pbegin()</code> and <code>pend()</code> functions are helpers provided by RcppNT2 – they provide pointers (rather than iterators) to the beginning and end of a block of data. <code>functor::plus()</code> is a helper functor that can be used with <code>simdReduce()</code>. Its implementation is:</p>
 <pre class="cpp"><code>struct plus {
     template &lt;typename T&gt;
     T operator()(const T&amp; lhs, const T&amp; rhs)

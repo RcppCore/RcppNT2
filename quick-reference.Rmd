@@ -46,11 +46,11 @@ double total = simdReduce(pbegin(data),
                           functor::plus());
 ```
 
-The `pbegin` function is a helper function provided by 
-RcppNT2, and provides pointers (rather than iterators) to 
+The `pbegin()` and `pend()` functions are helpers provided by
+RcppNT2 -- they provide pointers (rather than iterators) to
 the beginning and end of a block of data.  `functor::plus()`
 is a helper functor that can be used with `simdReduce()`.
-It's implementation is simply:
+Its implementation is:
 
 ```cpp
 struct plus {
