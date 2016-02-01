@@ -24,8 +24,8 @@ SEXP wrap_matrix(const nt2::table<__CTYPE__>& data)                      \
   return result;                                                         \
 }
 
-RCPP_NT2_WRAP_MATRIX_IMPL(double, REALSXP, REAL);
-RCPP_NT2_WRAP_MATRIX_IMPL(int,    INTSXP,  INTEGER);
+RCPP_NT2_WRAP_MATRIX_IMPL(double, REALSXP, REAL)
+RCPP_NT2_WRAP_MATRIX_IMPL(int,    INTSXP,  INTEGER)
 
 #define RCPP_NT2_WRAP_VECTOR_IMPL(__CTYPE__, __SEXPTYPE__, __ACCESSOR__) \
 SEXP wrap_vector(const nt2::table<__CTYPE__>& data)                      \
@@ -40,8 +40,8 @@ SEXP wrap_vector(const nt2::table<__CTYPE__>& data)                      \
   return result;                                                         \
 }
 
-RCPP_NT2_WRAP_VECTOR_IMPL(double, REALSXP, REAL);
-RCPP_NT2_WRAP_VECTOR_IMPL(int,    INTSXP,  INTEGER);
+RCPP_NT2_WRAP_VECTOR_IMPL(double, REALSXP, REAL)
+RCPP_NT2_WRAP_VECTOR_IMPL(int,    INTSXP,  INTEGER)
 
 #undef RCPP_NT2_WRAP_VECTOR_IMPL
 #undef RCPP_NT2_WRAP_MATRIX_IMPL
