@@ -31,7 +31,7 @@ private:
 // [[Rcpp::export]]
 double simdForTest(NumericVector a, NumericVector b, NumericVector c)
 {
-  return variadic::simdFor(F(), a, b, c);
+  return variadic::simdFor(DotProductAccumulator(), a, b, c);
 }
 
 /*** R

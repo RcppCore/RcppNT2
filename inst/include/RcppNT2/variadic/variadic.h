@@ -31,7 +31,7 @@ F simdFor(F&& f, const T* it, const T* end, const Ts*... ts)
 template <typename F, typename T, typename... Ts>
 F simdFor(F&& f, const T& t, const Ts&... ts)
 {
-  return simdFor(std::forward<F>(f), t.begin(), t.end(), begin(ts)...);
+  return simdFor(std::forward<F>(f), pbegin(t), pend(t), pbegin(ts)...);
 }
 
 template <typename MapReducer, typename U, typename T, typename... Ts>
@@ -74,9 +74,9 @@ auto simdMapReduce(MapReducer&& reducer, const T& t, const Ts&... ts)
 {
   return simdMapReduce(std::forward<MapReducer>(reducer),
                        std::forward<MapReducer>(reducer).init(),
-                       t.begin(),
-                       t.end(),
-                       begin(ts)...);
+                       pbegin(t),
+                       pend(t),
+                       pbegin(ts)...);
 }
 
 
