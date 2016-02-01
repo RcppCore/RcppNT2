@@ -247,7 +247,7 @@ $(document).ready(function () {
 <h1 class="title">
 RcppNT2
 </h1>
-<p>RcppNT2 is an R package that provides bindings to the <a href="https://github.com/jfalcou/nt2"><strong>Numerical Template Toolbox</strong></a> (<strong>NT<sup>2</sup></strong>).</p>
+<p>RcppNT2 is an R package that provides bindings to the <a href="https://github.com/jfalcou/nt2"><strong>Numerical Template Toolbox</strong></a> (<strong>NT<sup>2</sup></strong>). It provides a framework for implementing highly optimizable algorithms, taking advantage of <a href="https://en.wikipedia.org/wiki/SIMD">SIMD instructions</a> when possible, and falling back to scalar operations when not.</p>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
 <p><strong>NT<sup>2</sup></strong> is an open source C++ library aimed at simplifying the development, debugging and optimization of high-performance computing applications by providing a Matlab-like syntax that eases the transition between prototype and actual application.</p>
@@ -258,6 +258,17 @@ RcppNT2
 <li><p><strong>Trigonometric</strong>: All of <code>sin()</code>, <code>cos()</code> and <code>tan()</code> are provided within the <code>nt2</code> namespace, alongside their inverses <code>asin()</code>, <code>acos()</code>, and <code>atan()</code>. The trigonometric inverses (<code>sec()</code>, <code>csc()</code>, <code>cot()</code>) are provided as well.</p></li>
 </ul>
 <p>The full collection can be browsed within the <a href="http://nt2.metascale.fr/doc/html/user_manual0.html"><strong>NT<sup>2</sup></strong> User Manual</a> – it’s worth taking a quick look at an overview for each toolset, to get an idea of what functions are provided.</p>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<p>RcppNT2 comes with a number of standalone examples, which we hope will help demonstrate how the package can be used. Try running the examples yourself with <code>Rcpp::sourceCpp()</code>, and then iterate to get a better feel for how RcppNT2 can be used.</p>
+<ul>
+<li><p><a href="https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-transform.cpp">Using simdTransform()</a> — demonstrates how <code>simdTransform()</code> can be used to compute the vectorized addition of two vectors.</p></li>
+<li><p><a href="https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-for-each.cpp">Using simdFor()</a> — demonstrates how <code>simdFor()</code> can be used, alongside a stateful functor, to compute the product of a set of numbers.</p></li>
+<li><p><a href="https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-variadic-for.cpp">Variadic simdFor()</a> — demonstrates how the variadic flavor of <code>simdFor()</code> can be used to handle arbitrary number of vector inputs.</p></li>
+<li><p><a href="https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/example-na-handling-variance.cpp">Handling Missing Values</a> — demonstrates how missing values can be handled. The variance of a vector of numbers is computed, with missing values omitted.</p></li>
+</ul>
+<p>After you’ve browsed through a couple examples, take a look at the <a href="quick-reference.html">Quick-Reference Guide</a> to learn more.</p>
 </div>
 <div id="getting-started" class="section level2">
 <h2>Getting Started</h2>

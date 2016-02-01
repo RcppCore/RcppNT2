@@ -6,7 +6,10 @@ output: html_document
 
 RcppNT2 is an R package that provides bindings to the
 [**Numerical Template Toolbox**](https://github.com/jfalcou/nt2)
-(**NT<sup>2</sup>**).
+(**NT<sup>2</sup>**). It provides a framework for implementing
+highly optimizable algorithms, taking advantage of
+[SIMD instructions](https://en.wikipedia.org/wiki/SIMD) when
+possible, and falling back to scalar operations when not.
 
 ## Overview
 
@@ -42,6 +45,24 @@ The full collection can be browsed within the
 [**NT<sup>2</sup>** User Manual](http://nt2.metascale.fr/doc/html/user_manual0.html) -- it's
 worth taking a quick look at an overview for each toolset, to get
 an idea of what functions are provided.
+
+## Examples
+
+RcppNT2 comes with a number of standalone examples, which we hope
+will help demonstrate how the package can be used. Try running the
+examples yourself with `Rcpp::sourceCpp()`, and then iterate to
+get a better feel for how RcppNT2 can be used.
+
+- [Using simdTransform()](https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-transform.cpp) --- demonstrates how `simdTransform()` can be used to compute the vectorized addition of two vectors.
+
+- [Using simdFor()](https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-for-each.cpp) --- demonstrates how `simdFor()` can be used, alongside a stateful functor, to compute the product of a set of numbers.
+
+- [Variadic simdFor()](https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/examples-variadic-for.cpp) --- demonstrates how the variadic flavor of `simdFor()` can be used to handle arbitrary number of vector inputs.
+
+- [Handling Missing Values](https://github.com/RcppCore/RcppNT2/blob/master/inst/examples/example-na-handling-variance.cpp) --- demonstrates how missing values can be handled. The variance of a vector of numbers is computed, with missing values omitted.
+
+After you've browsed through a couple examples, take a look at the
+[Quick-Reference Guide](quick-reference.html) to learn more.
 
 ## Getting Started
 
