@@ -26,9 +26,10 @@ functions are all made available as part of the `nt2`
 namespace, and so are immediately ready to use. A quick
 glance at the types of functions available:
 
-- **Arithmetic**: `nt2::sum()`, `nt2::prod()`, `nt2::abs()`, `nt2::floor()`,
-                  `nt2::ceil()`, `nt2::sqrt()`, `nt2::sqr()`, `nt2::exp()`,
-                  `nt2::pow()`, `nt2::log()`, ...
+- **Arithmetic**: Most of the arithmetic operations you are familiar
+                  with will be provided by **NT<sup>2</sup>**: as a
+                  sampling, we have `sum()`, `prod()`, `abs()`, `floor()`,
+                  `ceil()`, `sqrt()`, `sqr()` `exp()`, `pow()` and `log()`.
 
 - **Bitwise**: Bitwise operators are provided in the `nt2`
                namespace, prefixed with `bitwise_`. For example,
