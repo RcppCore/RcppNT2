@@ -32,15 +32,15 @@ F simdFor(const T* it, const T* end, F&& f)
   const T* aligned_end   = aligned_begin + (end - aligned_begin) / N * N;
 
   for (; it != aligned_begin; ++it)
-    std::forward<F>(f)(*it);
+    f(*it);
 
   for (; it != aligned_end; it += N)
-    std::forward<F>(f)(boost::simd::aligned_load<vT>(it));
+    f(boost::simd::aligned_load<vT>(it));
 
   for (; it != end; ++it)
-    std::forward<F>(f)(*it);
+    f(*it);
 
-  return f;
+  return std::forward<F>(f);
 }
 
 template <typename T1, typename T2, typename F>
@@ -83,7 +83,7 @@ U simdReduce(const T* begin, const T* end, U init, F&& f)
 }
 
 template <typename T, typename U, typename MapReducer>
-U simdMapReduce(const T* it, const T* end, U init, MapReducer&& mapper)
+U simdMapReduce(const T* it, const T* end, U init, MapReducer&& f)
 {
   // We separate the range into three regions, to allow
   // for aligned loads of data (when possible), and scalar
@@ -107,18 +107,18 @@ U simdMapReduce(const T* it, const T* end, U init, MapReducer&& mapper)
 
   // Scalar operations for the initial unaligned region
   for (; it != aligned_begin; ++it)
-    std::forward<MapReducer>(mapper).map(*it, &init);
+    init = f.combine(f.map(*it), init);
 
   // Aligned, SIMD operations
   for (; it != aligned_end; it += N)
-    std::forward<MapReducer>(mapper).map(boost::simd::aligned_load<vT>(it), &buffer);
+    buffer = f.combine(f.map(boost::simd::aligned_load<vT>(it)), buffer);
 
   // Reduce the buffer, joining it into the scalar vale
-  std::forward<MapReducer>(mapper).reduce(buffer, &init);
+  init = f.combine(f.reduce(buffer), init);
 
   // Leftover unaligned region
   for (; it != end; ++it)
-    std::forward<MapReducer>(mapper).map(*it, &init);
+    init = f.combine(f.map(*it), init);
 
   return init;
 }

@@ -16,15 +16,15 @@ F simdFor(F&& f, const T* it, const T* end, const Ts*... ts)
   const T* aligned_end   = aligned_begin + (end - aligned_begin) / N * N;
 
   for (; it != aligned_begin; increment<1>(it, ts...))
-    std::forward<F>(f)(*it, *ts...);
+    f(*it, *ts...);
 
   for (; it != aligned_end; increment<N>(it, ts...))
-    std::forward<F>(f)(boost::simd::load<vT>(it), boost::simd::load<vT>(ts)...);
+    f(boost::simd::load<vT>(it), boost::simd::load<vT>(ts)...);
 
   for (; it != end; increment<1>(it, ts...))
-    std::forward<F>(f)(*it, *ts...);
+    f(*it, *ts...);
 
-  return f;
+  return std::forward<F>(f);
 
 }
 
@@ -35,10 +35,8 @@ F simdFor(F&& f, const T& t, const Ts&... ts)
 }
 
 template <typename MapReducer, typename U, typename T, typename... Ts>
-U simdMapReduce(MapReducer&& reducer, U init, const T* it, const T* end, const Ts*... ts)
+U simdMapReduce(MapReducer&& f, U init, const T* it, const T* end, const Ts*... ts)
 {
-  auto&& f = std::forward<MapReducer>(reducer);
-
   typedef boost::simd::pack<T> vT; // SIMD vector of T
   typedef boost::simd::pack<U> vU; // SIMD vector of U
 
