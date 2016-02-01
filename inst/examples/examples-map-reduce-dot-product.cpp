@@ -61,7 +61,7 @@ double simdDotProduct(NumericVector x, NumericVector y)
 // this, we only need to express our map computation, as the
 // PlusReducer will provide the requisite 'combine', 'reduce'
 // and 'init' methods.
-class DotProductMapReducerV2 : public reduce::PlusReducer
+class DotProductMapReducerV2 : public PlusReducer
 {
 public:
   template <typename T>
@@ -80,8 +80,8 @@ double simdDotProductV2(NumericVector x, NumericVector y)
 /*** R
 # Generate some data
 set.seed(123)
-x <- rnorm(1E6)
-y <- rnorm(1E6)
+x <- runif(1E6)
+y <- runif(1E6)
 
 # Ensure we produce the correct result
 stopifnot(all.equal(sum(x * y), simdDotProduct(x, y)))

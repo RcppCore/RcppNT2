@@ -29,6 +29,9 @@ public:
 };
 
 } // namespace reduce
+
+using PlusReducer = reduce::PlusReducer;
+
 } // namespace RcppNT2
 
 #endif /* RCPP_NT2_REDUCE_REDUCE_h */
