@@ -4,10 +4,11 @@
 namespace RcppNT2 {
 namespace reduce {
 
+template <typename V = double>
 class PlusReducer
 {
 public:
-  double init() { return 0.0; }
+  V init() { return V{}; }
 
   template <typename T>
   T combine(const T& t)
@@ -30,7 +31,8 @@ public:
 
 } // namespace reduce
 
-using PlusReducer = reduce::PlusReducer;
+template <typename T>
+using PlusReducer = reduce::PlusReducer<T>;
 
 } // namespace RcppNT2
 
