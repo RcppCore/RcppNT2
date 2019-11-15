@@ -3,7 +3,7 @@ RcppNT2
 
 ## Overview
 
-The [Numerical Template Toolbox (NT<sup>2</sup>)](https://github.com/jfalcou/nt2)
+The [Numerical Template Toolbox (NT<sup>2</sup>)](https://github.com/jtlap/nt2)
 is an Open Source C++ library aimed at simplifying the development, debugging
 and optimization of high-performance computing applications by providing a
 Matlab like syntax that eases the transition between prototype and actual
